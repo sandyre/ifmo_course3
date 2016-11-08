@@ -10,58 +10,90 @@
 #include <iostream>
 #include <string>
 
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
+
+struct Rectangle
+{
+    Rectangle(const SDL_Point& center,
+              const int width,
+              const int height)
+    {
+        m_points[0].x = center.x - width/2;
+        m_points[0].y = center.y - height/2;
+        
+        m_points[1].x = center.x - width/2;
+        m_points[1].y = center.y + height/2;
+        
+        m_points[2].x = center.x + width/2;
+        m_points[2].y = center.y + height/2;
+        
+        m_points[3].x = center.x + width/2;
+        m_points[3].y = center.y - height/2;
+    }
+    
+    SDL_Point m_points[4];
+};
+
 int main(int argc, const char * argv[])
 {
     SDL_Init(SDL_INIT_VIDEO);
-    
-    SDL_Surface * pBMP = SDL_LoadBMP(argv[1]);
-    
-    if( pBMP == nullptr )
-    {
-        std::cout << "Wrong path passed as an argument" << std::endl;
-        
-        SDL_Quit();
-        return 1;
-    }
-    
-    SDL_Window * pWND = SDL_CreateWindow("HI_L2 var 2",
+
+    SDL_Window * pWND = SDL_CreateWindow("HI_L4 var 2",
                                          SDL_WINDOWPOS_UNDEFINED,
                                          SDL_WINDOWPOS_UNDEFINED,
-                                         pBMP->clip_rect.w,
-                                         pBMP->clip_rect.h,
+                                         WINDOW_WIDTH,
+                                         WINDOW_HEIGHT,
                                          0);
+    
     SDL_Renderer * pRenderer = SDL_CreateRenderer(pWND, -1, 0);
     
-    SDL_LockSurface(pBMP);
-    Uint8   tmp;
-    Uint8 * pBaseAddress = (Uint8*)pBMP->pixels;
-    Uint8 * pPixelAddr = pBaseAddress;
-    for(auto i = 0; i < pBMP->clip_rect.w; ++i)
+    SDL_Point windowCenter;
+    windowCenter.x = WINDOW_WIDTH/2;
+    windowCenter.y = WINDOW_HEIGHT/2;
+//    Rectangle rect(windowCenter, 50, 50);
+    
+    SDL_Rect rect;
+    rect.x = windowCenter.x;
+    rect.y = windowCenter.y;
+    rect.w = 40;
+    rect.h = 40;
+    
+    bool bQuit = false;
+    SDL_Event event;
+    while(!bQuit)
     {
-        for(auto j = 0; j < pBMP->clip_rect.h; ++j)
+        SDL_RenderClear(pRenderer);
+        
+        while(SDL_PollEvent(&event))
         {
-            pPixelAddr = pBaseAddress + j * pBMP->pitch + i * pBMP->format->BytesPerPixel;
+            if(event.type == SDL_QUIT)
+            {
+                bQuit = true;
+            }
             
-                // Swap G and B
-            tmp = pPixelAddr[1];
-            pPixelAddr[1] = pPixelAddr[2];
-            pPixelAddr[2] = tmp;
+            if(event.type == SDL_KEYDOWN)
+            {
+                if(event.key.keysym.scancode == SDL_SCANCODE_LEFT)
+                {
+                    rect.x -= 2;
+//                    rect.m_points[0].x -= 2;
+//                    rect.m_points[1].x -= 2;
+//                    rect.m_points[2].x -= 2;
+//                    rect.m_points[3].x -= 2;
+                }
+                else if(event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
+                {
+                    rect.x += 2;
+//                    rect.m_points[0].x += 2;
+//                    rect.m_points[1].x += 2;
+//                    rect.m_points[2].x += 2;
+//                    rect.m_points[3].x += 2;
+                }
+            }
         }
-    }
-    SDL_UnlockSurface(pBMP);
-    
-        // Save resulting bmp
-    std::string sFileName = argv[1];
-    sFileName.resize(sFileName.size()-4);
-    sFileName += "_mod.bmp";
-    
-    SDL_SaveBMP(pBMP, sFileName.c_str());
-    
-    SDL_Texture * pTexture = SDL_CreateTextureFromSurface(pRenderer, pBMP);
-    
-    while(true)
-    {
-        SDL_RenderCopy(pRenderer, pTexture, NULL, NULL);
+        
+        SDL_RenderDrawRect(pRenderer, &rect);
         SDL_RenderPresent(pRenderer);
     }
     
