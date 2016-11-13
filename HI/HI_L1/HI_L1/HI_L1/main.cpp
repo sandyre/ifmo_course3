@@ -8,7 +8,7 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
-#include <string>
+#include <chrono>
 
 int main(int argc, const char * argv[])
 {
@@ -32,8 +32,8 @@ int main(int argc, const char * argv[])
                                          0);
     SDL_Renderer * pRenderer = SDL_CreateRenderer(pWND, -1, 0);
     
+    auto start = std::chrono::high_resolution_clock::now();
     SDL_LockSurface(pBMP);
-    Uint8   tmp;
     Uint8 * pBaseAddress = (Uint8*)pBMP->pixels;
     Uint8 * pPixelAddr = pBaseAddress;
     for(auto i = 0; i < pBMP->clip_rect.w; ++i)
@@ -41,14 +41,13 @@ int main(int argc, const char * argv[])
         for(auto j = 0; j < pBMP->clip_rect.h; ++j)
         {
             pPixelAddr = pBaseAddress + j * pBMP->pitch + i * pBMP->format->BytesPerPixel;
-            
-                // Swap G and B
-            tmp = pPixelAddr[0];
-            pPixelAddr[0] = pPixelAddr[1];
-            pPixelAddr[1] = tmp;
+            pPixelAddr[2] = 0x0;
         }
     }
     SDL_UnlockSurface(pBMP);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    std::cout << duration.count() << std::endl;
     
         // Save resulting bmp
     std::string sFileName = argv[1];
@@ -59,11 +58,11 @@ int main(int argc, const char * argv[])
     
     SDL_Texture * pTexture = SDL_CreateTextureFromSurface(pRenderer, pBMP);
     
-    while(true)
-    {
-        SDL_RenderCopy(pRenderer, pTexture, NULL, NULL);
-        SDL_RenderPresent(pRenderer);
-    }
+//    while(true)
+//    {
+//        SDL_RenderCopy(pRenderer, pTexture, NULL, NULL);
+//        SDL_RenderPresent(pRenderer);
+//    }
     
     SDL_DestroyWindow(pWND);
     

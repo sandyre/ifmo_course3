@@ -26,7 +26,6 @@ public:
     Process() : m_fRemainingRunningTime(0.0f),
                 m_eState(RUNNING)
     {
-        
     }
     
     void  MakeStep()
