@@ -6,7 +6,8 @@
 
 int main(int argc, const char * argv[])
 {
-    size_t   nSize = 0;
+    size_t nSize = 0;
+    int  nVMStatSize = HOST_VM_INFO_COUNT;
     vm_statistics_data_t stVMData;
     char pszCPUName[255];
     char pszKernelVersion[255];
@@ -19,7 +20,6 @@ int main(int argc, const char * argv[])
                  &nSize,
                  NULL, 0);
     
-    int nVMStatSize = HOST_VM_INFO_COUNT;
     host_statistics(mach_host_self(), HOST_VM_INFO,
                     (integer_t*)&stVMData,
                     (mach_msg_type_number_t*)&nVMStatSize);
