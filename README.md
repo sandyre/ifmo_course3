@@ -9,5 +9,5 @@
 2. OS/OS_L2 (вариант 2, OSX, C++11)
 
 ##HI (Проектирование Ч-М интерфейса)
-1. 
+1. HI/HI_L1 (вариант 2, WinAPI + SDL (SDL part *nix compatible (?)), C++11)
 2. HI/HI_L2 (вариант 2, OSX, C++ with SDL)
