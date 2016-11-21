@@ -10,4 +10,5 @@
 
 ##HI (Проектирование Ч-М интерфейса)
 1. HI/HI_L1 (вариант 2, WinAPI + SDL (SDL part *nix compatible (?)), C++11)
-2. HI/HI_L2 (вариант 2, OSX, C++ with SDL)
+2. HI/HI_L2 (вариант 2, WinAPI / SDL versions)
+3. HI/HI_L3 (вариант 2, WinAPI / SDL versions)
