@@ -1,4 +1,4 @@
-![alt tag](http://memesmix.net/media/created/dw7faw.jpg)
+![alt tag](http://risovach.ru/upload/2016/06/mem/ni-hu-ya_115653073_orig_.jpg)
 
 На данный момент тут лежат все исходники по следующим предметам:
 ##OrgEVM (Организация ЭВМ)
