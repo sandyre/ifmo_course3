@@ -15,9 +15,9 @@
 #include <dispatch/dispatch.h>
 
     // Synchonizes stdout between threads
-std::mutex g_STDOUTMutex;
 void ThreadSafePrint(const char * pText)
 {
+    static std::mutex g_STDOUTMutex;
     g_STDOUTMutex.lock();
     std::cout << pText;
     g_STDOUTMutex.unlock();
@@ -36,7 +36,8 @@ public:
     m_ResData(g_ResData),
     m_BinSemaphore(g_BinSem),
     m_fSleepTime(0.0f),
-    m_CritSection(g_CritSection)
+    m_CritSection(g_CritSection),
+    m_bFinished(false)
     {
     }
     
@@ -44,6 +45,11 @@ public:
     {
         m_oThread = std::thread(&WorkThread::Work, this);
         m_oThread.detach();
+    }
+    
+    bool IsFinished() const
+    {
+        return m_bFinished;
     }
     
 private:
@@ -92,8 +98,10 @@ private:
         }
         ThreadSafePrint("Worker: Finished!\n");
         m_CritSection.unlock();
+        m_bFinished = true;
     }
     
+    bool m_bFinished;
     std::recursive_mutex& m_CritSection;
     dispatch_semaphore_t m_BinSemaphore;
     float m_fSleepTime;
@@ -112,7 +120,8 @@ public:
               std::recursive_mutex& g_CritSection) :
     m_Data(g_Data),
     m_ResData(g_ResData),
-    m_CritSection(g_CritSection)
+    m_CritSection(g_CritSection),
+    m_bFinished(false)
     {
     }
     
@@ -120,6 +129,11 @@ public:
     {
         m_oThread = std::thread(&SumThread::Work, this);
         m_oThread.detach();
+    }
+    
+    bool IsFinished() const
+    {
+        return m_bFinished;
     }
     
 private:
@@ -148,8 +162,10 @@ private:
         ThreadSafePrint("\n");
         ThreadSafePrint("Summer: Finished!\n");
         m_CritSection.unlock();
+        m_bFinished = true;
     }
     
+    bool  m_bFinished;
     const std::vector<float>& m_Data;
     std::vector<float>& m_ResData;
     std::thread m_oThread;
@@ -191,15 +207,15 @@ int main(int argc, const char * argv[])
         str_stream.str("");
         str_stream.clear();
     }
-        // myaso
+        // Threads detached
     oWorkThread.Start();
     oSumThread.Start();
     
-        // interesting part!
     size_t nPreviousSize = 0;
-    while(true)
+    while((oWorkThread.IsFinished() & oWorkThread.IsFinished()) == false)
     {
         dispatch_semaphore_wait(g_BinSemaphore, DISPATCH_TIME_FOREVER);
+        
         if(nPreviousSize != g_ResultedData.size())
         {
             nPreviousSize = g_ResultedData.size();
@@ -210,6 +226,7 @@ int main(int argc, const char * argv[])
             }
             ThreadSafePrint("\n");
         }
+        
         dispatch_semaphore_signal(g_BinSemaphore);
     }
     
