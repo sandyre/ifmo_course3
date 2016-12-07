@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F88D79F1DD4E203001FC1D7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F88D79E1DD4E203001FC1D7 /* main.cpp */; };
+		1F9699171DF82EF400CAA806 /* lexical_analyzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F9699151DF82EF400CAA806 /* lexical_analyzer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		1F88D79B1DD4E203001FC1D7 /* ORC_L1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ORC_L1; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F88D79E1DD4E203001FC1D7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1F9699151DF82EF400CAA806 /* lexical_analyzer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lexical_analyzer.cpp; sourceTree = "<group>"; };
+		1F9699161DF82EF400CAA806 /* lexical_analyzer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lexical_analyzer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				1F88D79E1DD4E203001FC1D7 /* main.cpp */,
+				1F9699151DF82EF400CAA806 /* lexical_analyzer.cpp */,
+				1F9699161DF82EF400CAA806 /* lexical_analyzer.hpp */,
 			);
 			path = ORC_L1;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F9699171DF82EF400CAA806 /* lexical_analyzer.cpp in Sources */,
 				1F88D79F1DD4E203001FC1D7 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +252,7 @@
 				1F88D7A41DD4E203001FC1D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

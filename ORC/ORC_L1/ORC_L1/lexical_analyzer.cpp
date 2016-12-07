@@ -1,0 +1,277 @@
+//
+//  lexical_analyzer.cpp
+//  ORC_L1
+//
+//  Created by Aleksandr Borzikh on 07.12.16.
+//  Copyright © 2016 sandyre. All rights reserved.
+//
+
+#include <iostream>
+#include <cctype>
+
+#include "lexical_analyzer.hpp"
+
+Lexeme::Lexeme(enum Lexeme::Type eType,
+               int32_t dValue,
+               size_t nLine,
+               size_t nColumn) :
+m_eType(eType),
+m_dValue(dValue),
+m_nLine(nLine),
+m_nColumn(nColumn)
+{
+}
+
+Lexeme::Type
+Lexeme::GetType() const
+{
+    return m_eType;
+}
+
+int32_t
+Lexeme::GetValue() const
+{
+    return m_dValue;
+}
+
+size_t
+Lexeme::GetLineNumber() const
+{
+    return m_nLine;
+}
+
+size_t
+Lexeme::GetColumnNumber() const
+{
+    return m_nColumn;
+}
+
+
+LexicalAnalyzer::LexicalAnalyzer(const std::string& sFilename) :
+m_oFileStream(std::ifstream(sFilename))
+{
+    if(!m_oFileStream.is_open())
+    {
+        std::cerr << "ERROR OPENING FILE: " << sFilename << std::endl;
+    }
+}
+
+void
+LexicalAnalyzer::Analyze()
+{
+        // let the game begin!
+    if(!m_oFileStream.is_open())
+        return;
+    
+    char Letter;
+    size_t nCurrentLine = 0, nCurrentColumn = 0;
+    while(!m_oFileStream.eof())
+    {
+        m_oFileStream.get(Letter);
+        ++nCurrentColumn;
+        
+        switch(Letter)
+        {
+            case ' ' :
+                ++nCurrentColumn;
+                break;
+                
+            case '\n' :
+                ++nCurrentLine;
+                nCurrentColumn = 0;
+                break;
+            
+            case ';' :
+                m_aLexemes.emplace_back(Lexeme(Lexeme::Type::SEMICOLON, 0,
+                                               nCurrentLine, nCurrentColumn));
+                break;
+            
+            case ',' :
+                m_aLexemes.emplace_back(Lexeme(Lexeme::Type::COMMA, 0,
+                                               nCurrentLine, nCurrentColumn));
+                break;
+                
+            case '(' :
+                m_aLexemes.emplace_back(Lexeme(Lexeme::Type::BRACKET_OPEN, 0,
+                                               nCurrentLine, nCurrentColumn));
+                break;
+            
+            case ')' :
+                m_aLexemes.emplace_back(Lexeme(Lexeme::Type::BRACKET_CLOSE, 0,
+                                               nCurrentLine, nCurrentColumn));
+                break;
+                
+            case '*' :
+                m_aLexemes.emplace_back(Lexeme(Lexeme::Type::OPERATOR_MUL, 0,
+                                               nCurrentLine, nCurrentColumn));
+                break;
+                
+            case '+' :
+                m_aLexemes.emplace_back(Lexeme(Lexeme::Type::OPERATOR_ADD, 0,
+                                               nCurrentLine, nCurrentColumn));
+                break;
+                
+            case '-' :
+                    // two possibilites - binary or unary minus
+                if(!m_aLexemes.size())
+                {
+                    m_aLexemes.emplace_back(Lexeme(Lexeme::Type::UNAR_OPER_NOT, 0,
+                                                   nCurrentLine, nCurrentColumn));
+                    break;
+                }
+                else
+                {
+                    if(m_aLexemes.back().GetType() == Lexeme::Type::CONST ||
+                       m_aLexemes.back().GetType() == Lexeme::Type::ID ||
+                       m_aLexemes.back().GetType() == Lexeme::Type::BRACKET_CLOSE)
+                    {
+                        m_aLexemes.emplace_back(Lexeme(Lexeme::Type::OPERATOR_SUB, 0,
+                                                       nCurrentLine, nCurrentColumn));
+                        break;
+                    }
+                    else
+                    {
+                        m_aLexemes.emplace_back(Lexeme(Lexeme::Type::UNAR_OPER_NOT, 0,
+                                                       nCurrentLine, nCurrentColumn));
+                        break;
+                    }
+                }
+                break;
+            
+            case '=' :
+                    // two possibilites - assignment or equals
+                if(m_oFileStream.peek() != '=')
+                    m_aLexemes.emplace_back(Lexeme(Lexeme::Type::ASSIGNMENT, 0,
+                                                   nCurrentLine, nCurrentColumn));
+                else
+                    m_aLexemes.emplace_back(Lexeme(Lexeme::Type::OPERATOR_EQUAL, 0,
+                                                   nCurrentLine, nCurrentColumn));
+                break;
+                
+            case '>' :
+                m_aLexemes.emplace_back(Lexeme(Lexeme::Type::OPERATOR_GREATER, 0,
+                                               nCurrentLine, nCurrentColumn));
+                break;
+                
+            case '<' :
+                m_aLexemes.emplace_back(Lexeme(Lexeme::Type::OPERATOR_LESS, 0,
+                                               nCurrentLine, nCurrentColumn));
+                break;
+            
+            default:
+                if(!(std::isalpha(Letter) || std::isdigit(Letter)))
+                {
+                    std::cerr << "Found unrecognizable char in input stream.\n";
+                    break;
+                }
+                
+                std::string Keyword;
+                Keyword += Letter;
+                if(std::isalpha(Letter))
+                {
+                    while(std::isalpha(m_oFileStream.peek()))
+                    {
+                        m_oFileStream.get(Letter);
+                        Keyword += Letter;
+                        ++nCurrentColumn;
+                    }
+                    
+                    if(!strcmp(Keyword.c_str(), "Var"))
+                    {
+                        m_aLexemes.emplace_back(Lexeme(Lexeme::Type::VAR, 0,
+                                                       nCurrentLine, nCurrentColumn));
+                        break;
+                    }
+                    else
+                    {
+                        auto IDIter = m_mIDTable.find(Keyword);
+                        if(IDIter != m_mIDTable.end())
+                        {
+                            m_aLexemes.emplace_back(Lexeme(Lexeme::Type::ID, IDIter->second,
+                                                           nCurrentLine, nCurrentColumn));
+                            break;
+                        }
+                        else
+                        {
+                            m_mIDTable.insert(std::make_pair(Keyword, m_mIDTable.size()));
+                            m_aLexemes.emplace_back(Lexeme(Lexeme::Type::ID, m_mIDTable.size()-1,
+                                                           nCurrentLine, nCurrentColumn));
+                            break;
+                        }
+                    }
+                }
+                
+                if(std::isdigit(Letter))
+                {
+                    while(std::isdigit(m_oFileStream.peek()))
+                    {
+                        m_oFileStream.get(Letter);
+                        Keyword += Letter;
+                        ++nCurrentColumn;
+                    }
+                    
+                    m_aLexemes.emplace_back(Lexeme(Lexeme::Type::CONST, std::stoi(Keyword),
+                                                   nCurrentLine, nCurrentColumn));
+                }
+                
+                break;
+        }
+    }
+}
+
+void
+LexicalAnalyzer::PrintContent()
+{
+    std::cout << "LEXEMES MEMES!\n";
+    for(auto& lexem : m_aLexemes)
+    {
+        std::cout << (int)lexem.GetType() << " "
+                  << lexem.GetValue() << " "
+                  << lexem.GetLineNumber() << " "
+                  << lexem.GetColumnNumber() << "\n";
+    }
+    std::cout << "IDS TABLE!\n";
+    for(auto iter = m_mIDTable.begin(); iter != m_mIDTable.end(); ++iter)
+    {
+        std::cout << iter->first << " " << iter->second << "\n";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

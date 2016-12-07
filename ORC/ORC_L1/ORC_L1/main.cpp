@@ -7,8 +7,11 @@
 //
 
 #include <iostream>
-#include <stdint.h>
+#include "lexical_analyzer.hpp"
 
 int main(int argc, const char * argv[])
 {
+    LexicalAnalyzer LexAnal("/users/aleksandr/Desktop/test.lang");
+    LexAnal.Analyze();
+    LexAnal.PrintContent();
 }
