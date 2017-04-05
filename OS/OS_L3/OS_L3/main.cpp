@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <dispatch/dispatch.h>
 
+#include <complex>
     // Synchonizes stdout between threads
 void ThreadSafePrint(const char * pText)
 {
@@ -174,6 +175,8 @@ private:
 
 int main(int argc, const char * argv[])
 {
+    int a = sizeof(std::vector<int>);
+    
     size_t nSize = 0;
     dispatch_semaphore_t g_BinSemaphore = dispatch_semaphore_create(5);
     std::recursive_mutex g_CritSection;

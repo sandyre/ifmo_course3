@@ -13,6 +13,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <array>
 #include <stdint.h>
 
 class Lexeme
@@ -38,8 +39,10 @@ public:
         OPERATOR_SUB,
         OPERATOR_DIV,
         OPERATOR_MUL,
-        
+        TypeEnumSize
     };
+    
+    static const std::array<std::string, (size_t)Type::TypeEnumSize> TypeToString;
     
 public:
     Lexeme() = delete;

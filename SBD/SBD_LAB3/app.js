@@ -29,24 +29,24 @@ var importer_scheme = new mongoose.Schema(
 var import_scheme = new mongoose.Schema(
 {
 	importer_id : {
-		type : [mongoose.Schema.Types.ObjectId],
+		type : mongoose.Schema.Types.ObjectId,
 		required : true
 	},
 	product_id : {
-		type : [mongoose.Schema.Types.ObjectId],
+		type : mongoose.Schema.Types.ObjectId,
 		required : true
 	},
 	amount : {
-		type : [mongoose.Schema.Types.Double],
+		type : mongoose.Schema.Types.Double,
 		min : 0
 	},
 	price : {
-		type : [mongoose.Schema.Types.Double],
+		type : mongoose.Schema.Types.Double,
 		required : true,
 		min : 0
 	},
 	sum : {
-		type : [mongoose.Schema.Types.Double],
+		type : mongoose.Schema.Types.Double,
 		required : true,
 		min : 0
 	},
@@ -65,12 +65,12 @@ var product_scheme = new mongoose.Schema(
 		maxlength : 30
 	},
 	amount : {
-		type : [mongoose.Schema.Types.Double],
+		type : mongoose.Schema.Types.Double,
 		required : true,
 		min : 0
 	},
 	price : {
-		type : [mongoose.Schema.Types.Double],
+		type : mongoose.Schema.Types.Double,
 		required : true,
 		min : 0
 	}
@@ -85,7 +85,7 @@ var menu_food_scheme = new mongoose.Schema(
 		maxlength : 30
 	},
 	price : {
-		type : [mongoose.Schema.Types.Double],
+		type : mongoose.Schema.Types.Double,
 		required : true,
 		min : 0
 	},
@@ -102,12 +102,12 @@ var menu_food_scheme = new mongoose.Schema(
 		maxlength : 5
 	},
 	out : {
-		type : [mongoose.Schema.Types.Double],
+		type : mongoose.Schema.Types.Double,
 		required : true,
 		min : 0
 	},
 	view : {
-		type : [mongoose.Schema.Types.Buffer],
+		type : mongoose.Schema.Types.Buffer,
 		required : false
 	}
 });
@@ -115,15 +115,15 @@ var menu_food_scheme = new mongoose.Schema(
 var reciepe_menu_scheme = new mongoose.Schema(
 {
 	menu_food_id : {
-		type : [mongoose.Schema.Types.ObjectId],
+		type : mongoose.Schema.Types.ObjectId,
 		required : true
 	},
 	product_id : {
-		type : [mongoose.Schema.Types.ObjectId],
+		type : mongoose.Schema.Types.ObjectId,
 		required : true
 	},
 	amount : {
-		type : [mongoose.Schema.Types.Double],
+		type : mongoose.Schema.Types.Double,
 		required : true,
 		min : 0
 	}
@@ -146,6 +146,30 @@ db.once('open', function() {
 		else console.log('Saved : ', data);
 	});
 
-	var Import = mongoose.model('Import', import_model);
-	
+	var Product = mongoose.model('Product', product_scheme);
+	test = new Product({
+		name : 'Morkovka',
+		amount : 10.0,
+		price : 50.0
+	});
+
+	test.save(function(err, data) {
+		if(err) console.log(err);
+		else console.log('Saved : ', data);
+	});
+
+	var Import = mongoose.model('Import', import_scheme);
+	test = new Import({
+		importer_id : mongoose.Types.ObjectId('5845ae6cb3951039d008d110'),
+		product_id : mongoose.Types.ObjectId('5846b7e71cb7110a0acd2c2d'),
+		amount : 10.5,
+		price : 30.5,
+		sum : 325.0,
+		date : new Date('31 December, 2020')
+	});
+
+	test.save(function(err, data) {
+		if(err) console.log(err);
+		else console.log('Saved : ', data);
+	});
 });

@@ -14,6 +14,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
+#include <netdb.h>
 
 #define BOSS_SEMAPHORE_NAME "/boss_semaphore"
 
@@ -35,9 +36,33 @@ int main(int argc, char * argv[])
     mach_port_t boss_port = atoi(argv[1]);
     
     sem_t * boss_sem = sem_open(BOSS_SEMAPHORE_NAME, 0);
-    sem_trywait(boss_sem);
+    sem_wait(boss_sem);
     int err = errno;
     std::cout << "Scout received a right to write messages\n";
+    
+    char buffer[256] = { 0 };
+    int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    sockaddr_in serv_addr;
+    struct hostent * server;
+    
+    server = gethostbyname("localhost");
+    if(server == nullptr)
+    {
+        std::cout << "Error dereferencing localhost";
+        sem_post(boss_sem);
+        return 1;
+    }
+    
+    bcopy((char *)server->h_addr,
+          (char *)&serv_addr.sin_addr.s_addr,
+          server->h_length);
+    serv_addr.sin_port = 1337;
+    if (connect(sockfd,(struct sockaddr *) &serv_addr,sizeof(serv_addr)) < 0)
+    {
+        std::cout << "Error connecting via tcp socket";
+        sem_post(boss_sem);
+        return 2;
+    }
     
     while(dUserInput != 0)
     {
@@ -45,15 +70,20 @@ int main(int argc, char * argv[])
         switch (dUserInput)
         {
             case 1:
+            {
+                write(sockfd, "1", strlen("1"));
+                break;
+            }
             case 2:
             {
-//                send_integer(boss_port, dUserInput);
+                write(sockfd, "2", strlen("2"));
                 break;
             }
             case 0:
             {
                 sem_post(boss_sem);
                 std::cout << "Scout process suicides\n";
+                close(sockfd);
                 return 0;
                 break;
             }

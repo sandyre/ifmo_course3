@@ -11,6 +11,16 @@
 
 #include "lexical_analyzer.hpp"
 
+const std::array<std::string, (size_t)Lexeme::Type::TypeEnumSize>
+Lexeme::TypeToString
+{
+    "VAR",
+    "CONST",
+    "IDENTIF",
+    "(", ")", ";", ",", ":=", "WHILE", "DO", "NOT",
+    "==", "<", ">", "+", "-", "/", "*"
+};
+
 Lexeme::Lexeme(enum Lexeme::Type eType,
                int32_t dValue,
                size_t nLine,
@@ -138,14 +148,33 @@ LexicalAnalyzer::Analyze()
                 }
                 break;
             
-            case '=' :
-                    // two possibilites - assignment or equals
-                if(m_oFileStream.peek() != '=')
+            case ':' :
+                if(m_oFileStream.peek() == '=')
+                {
                     m_aLexemes.emplace_back(Lexeme(Lexeme::Type::ASSIGNMENT, 0,
                                                    nCurrentLine, nCurrentColumn));
+                    m_oFileStream.get();
+                }
                 else
+                {
+                    std::cerr << "UNDEFINED LEXEME, ABORT\n";
+                    return;
+                }
+                
+                break;
+                
+            case '=' :
+                if(m_oFileStream.peek() == '=')
+                {
                     m_aLexemes.emplace_back(Lexeme(Lexeme::Type::OPERATOR_EQUAL, 0,
                                                    nCurrentLine, nCurrentColumn));
+                    m_oFileStream.get();
+                }
+                else
+                {
+                    std::cerr << "UNDEFINED LEXEME, ABORT\n";
+                    return;
+                }
                 break;
                 
             case '>' :
@@ -165,6 +194,7 @@ LexicalAnalyzer::Analyze()
                     break;
                 }
                 
+                size_t nCharsReaded = 1;
                 std::string Keyword;
                 Keyword += Letter;
                 if(std::isalpha(Letter))
@@ -173,13 +203,28 @@ LexicalAnalyzer::Analyze()
                     {
                         m_oFileStream.get(Letter);
                         Keyword += Letter;
-                        ++nCurrentColumn;
+                        ++nCharsReaded;
                     }
                     
                     if(!strcmp(Keyword.c_str(), "Var"))
                     {
                         m_aLexemes.emplace_back(Lexeme(Lexeme::Type::VAR, 0,
                                                        nCurrentLine, nCurrentColumn));
+                        nCurrentColumn += nCharsReaded;
+                        break;
+                    }
+                    else if(!strcmp(Keyword.c_str(), "WHILE"))
+                    {
+                        m_aLexemes.emplace_back(Lexeme(Lexeme::Type::WHILE, 0,
+                                                     nCurrentColumn, nCurrentColumn));
+                        nCurrentColumn += nCharsReaded;
+                        break;
+                    }
+                    else if(!strcmp(Keyword.c_str(), "DO"))
+                    {
+                        m_aLexemes.emplace_back(Lexeme(Lexeme::Type::DO, 0,
+                                                      nCurrentColumn, nCurrentColumn));
+                        nCurrentColumn += nCharsReaded;
                         break;
                     }
                     else
@@ -189,15 +234,15 @@ LexicalAnalyzer::Analyze()
                         {
                             m_aLexemes.emplace_back(Lexeme(Lexeme::Type::ID, IDIter->second,
                                                            nCurrentLine, nCurrentColumn));
-                            break;
                         }
                         else
                         {
                             m_mIDTable.insert(std::make_pair(Keyword, m_mIDTable.size()));
                             m_aLexemes.emplace_back(Lexeme(Lexeme::Type::ID, m_mIDTable.size()-1,
                                                            nCurrentLine, nCurrentColumn));
-                            break;
                         }
+                        
+                        nCurrentColumn += nCharsReaded;
                     }
                 }
                 
@@ -207,11 +252,12 @@ LexicalAnalyzer::Analyze()
                     {
                         m_oFileStream.get(Letter);
                         Keyword += Letter;
-                        ++nCurrentColumn;
+                        ++nCharsReaded;
                     }
                     
                     m_aLexemes.emplace_back(Lexeme(Lexeme::Type::CONST, std::stoi(Keyword),
                                                    nCurrentLine, nCurrentColumn));
+                    nCurrentColumn += nCharsReaded;
                 }
                 
                 break;
@@ -222,56 +268,17 @@ LexicalAnalyzer::Analyze()
 void
 LexicalAnalyzer::PrintContent()
 {
-    std::cout << "LEXEMES MEMES!\n";
+    std::cout << "LEXEMES:\n";
     for(auto& lexem : m_aLexemes)
     {
-        std::cout << (int)lexem.GetType() << " "
+        std::cout << lexem.TypeToString[(int)lexem.GetType()] << " "
                   << lexem.GetValue() << " "
                   << lexem.GetLineNumber() << " "
                   << lexem.GetColumnNumber() << "\n";
     }
-    std::cout << "IDS TABLE!\n";
+    std::cout << "IDS TABLE:\n";
     for(auto iter = m_mIDTable.begin(); iter != m_mIDTable.end(); ++iter)
     {
         std::cout << iter->first << " " << iter->second << "\n";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

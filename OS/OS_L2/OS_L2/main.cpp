@@ -74,6 +74,7 @@ class RR_Algorithm
 {
 public:
     RR_Algorithm(const float fQuant) : m_fQuant(fQuant),
+                                       m_fTimer(0.0f),
                                        m_iCurrentlyRunningProcess(0)
     {
     }
@@ -83,19 +84,37 @@ public:
         if(m_queProcesses.size() == 0)
             return;
         
-        for(float i = 0.0f; i < m_fQuant; ++i)
+        if(m_fTimer != m_fQuant)
         {
             m_queProcesses[m_iCurrentlyRunningProcess].MakeStep();
-            if(m_queProcesses[m_iCurrentlyRunningProcess].GetProcessState() ==
-               Process::FINISHED)
+        }
+        
+        if(m_queProcesses[m_iCurrentlyRunningProcess].GetProcessState() == Process::FINISHED)
+        {
+            m_queProcesses.erase(m_queProcesses.begin() + m_iCurrentlyRunningProcess);
+            if(m_iCurrentlyRunningProcess == m_queProcesses.size())
             {
-                m_queProcesses.erase(m_queProcesses.begin() + m_iCurrentlyRunningProcess);
-                if(m_iCurrentlyRunningProcess == m_queProcesses.size())
-                    m_iCurrentlyRunningProcess = 0;
-                else
-                    ++m_iCurrentlyRunningProcess;
-                return;
+                m_iCurrentlyRunningProcess = 0;
             }
+            else
+            {
+                ++m_iCurrentlyRunningProcess;
+            }
+            m_fTimer = 0.0;
+            return;
+        }
+        
+        if(m_fTimer == m_fQuant)
+        {
+            if(m_iCurrentlyRunningProcess == m_queProcesses.size())
+            {
+                m_iCurrentlyRunningProcess = 0;
+            }
+            else
+            {
+                ++m_iCurrentlyRunningProcess;
+            }
+            m_fTimer = 0.0;
         }
     }
     
@@ -121,6 +140,7 @@ protected:
     size_t m_iCurrentlyRunningProcess;
     std::deque< Process > m_queProcesses;
     const float m_fQuant;
+    float m_fTimer;
 };
 
 class SPN_Algorithm
@@ -172,13 +192,13 @@ int main(int argc, const char * argv[])
     
     std::queue<std::pair<float, float>> queProcesses;
     queProcesses.push(std::make_pair(0.0f, 4.0f));
-    queProcesses.push(std::make_pair(4.0f, 7.0f));
-    queProcesses.push(std::make_pair(6.0f, 8.0f));
-    queProcesses.push(std::make_pair(7.0f, 4.0f));
-    queProcesses.push(std::make_pair(11.0f, 5.0f));
+    queProcesses.push(std::make_pair(6.0f, 7.0f));
     queProcesses.push(std::make_pair(13.0f, 8.0f));
-    queProcesses.push(std::make_pair(19.0f, 2.0f));
-    queProcesses.push(std::make_pair(24.0f, 5.0f));
+    queProcesses.push(std::make_pair(22.0f, 4.0f));
+    queProcesses.push(std::make_pair(28.0f, 5.0f));
+    queProcesses.push(std::make_pair(34.0f, 8.0f));
+    queProcesses.push(std::make_pair(40.0f, 2.0f));
+    queProcesses.push(std::make_pair(48.0f, 5.0f));
     
     while(true)
     {
