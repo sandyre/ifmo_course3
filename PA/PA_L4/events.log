@@ -1,0 +1,464 @@
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 0 (pid 32649, parent     0) has STARTED
+Process 1 (pid 32650, parent 32649) has STARTED
+Process 2 (pid 32651, parent 32649) has STARTED
+Process 3 (pid 32652, parent 32649) has STARTED
+Process 4 (pid 32653, parent 32649) has STARTED
+Process 5 (pid 32654, parent 32649) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 0 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 0 (pid 32657, parent     0) has STARTED
+Process 1 (pid 32658, parent 32657) has STARTED
+Process 2 (pid 32659, parent 32657) has STARTED
+Process 3 (pid 32660, parent 32657) has STARTED
+Process 4 (pid 32661, parent 32657) has STARTED
+Process 5 (pid 32662, parent 32657) has STARTED
+Process 6 (pid 32663, parent 32657) has STARTED
+Process 7 (pid 32664, parent 32657) has STARTED
+Process 8 (pid 32665, parent 32657) has STARTED
+Process 9 (pid 32666, parent 32657) has STARTED
+Process 10 (pid 32667, parent 32657) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 0 (pid 32679, parent     0) has STARTED
+Process 1 (pid 32680, parent 32679) has STARTED
+Process 2 (pid 32681, parent 32679) has STARTED
+Process 3 (pid 32682, parent 32679) has STARTED
+Process 4 (pid 32683, parent 32679) has STARTED
+Process 5 (pid 32684, parent 32679) has STARTED
+Process 6 (pid 32685, parent 32679) has STARTED
+Process 7 (pid 32686, parent 32679) has STARTED
+Process 8 (pid 32687, parent 32679) has STARTED
+Process 9 (pid 32688, parent 32679) has STARTED
+Process 10 (pid 32689, parent 32679) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 0 (pid 32691, parent     0) has STARTED
+Process 1 (pid 32692, parent 32691) has STARTED
+Process 2 (pid 32693, parent 32691) has STARTED
+Process 3 (pid 32694, parent 32691) has STARTED
+Process 4 (pid 32695, parent 32691) has STARTED
+Process 5 (pid 32696, parent 32691) has STARTED
+Process 6 (pid 32697, parent 32691) has STARTED
+Process 7 (pid 32698, parent 32691) has STARTED
+Process 8 (pid 32699, parent 32691) has STARTED
+Process 9 (pid 32700, parent 32691) has STARTED
+Process 10 (pid 32701, parent 32691) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 0 (pid 32703, parent     0) has STARTED
+Process 1 (pid 32704, parent 32703) has STARTED
+Process 2 (pid 32705, parent 32703) has STARTED
+Process 3 (pid 32706, parent 32703) has STARTED
+Process 4 (pid 32707, parent 32703) has STARTED
+Process 5 (pid 32708, parent 32703) has STARTED
+Process 6 (pid 32709, parent 32703) has STARTED
+Process 7 (pid 32710, parent 32703) has STARTED
+Process 8 (pid 32711, parent 32703) has STARTED
+Process 9 (pid 32712, parent 32703) has STARTED
+Process 10 (pid 32713, parent 32703) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 0 (pid 32715, parent     0) has STARTED
+Process 1 (pid 32716, parent 32715) has STARTED
+Process 2 (pid 32717, parent 32715) has STARTED
+Process 3 (pid 32718, parent 32715) has STARTED
+Process 4 (pid 32719, parent 32715) has STARTED
+Process 5 (pid 32720, parent 32715) has STARTED
+Process 6 (pid 32721, parent 32715) has STARTED
+Process 7 (pid 32722, parent 32715) has STARTED
+Process 8 (pid 32723, parent 32715) has STARTED
+Process 9 (pid 32724, parent 32715) has STARTED
+Process 10 (pid 32725, parent 32715) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 0 (pid 32727, parent     0) has STARTED
+Process 1 (pid 32728, parent 32727) has STARTED
+Process 2 (pid 32729, parent 32727) has STARTED
+Process 3 (pid 32730, parent 32727) has STARTED
+Process 4 (pid 32731, parent 32727) has STARTED
+Process 5 (pid 32732, parent 32727) has STARTED
+Process 6 (pid 32733, parent 32727) has STARTED
+Process 7 (pid 32734, parent 32727) has STARTED
+Process 8 (pid 32735, parent 32727) has STARTED
+Process 9 (pid 32736, parent 32727) has STARTED
+Process 10 (pid 32737, parent 32727) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 0 (pid 32738, parent     0) has STARTED
+Process 1 (pid 32739, parent 32738) has STARTED
+Process 2 (pid 32740, parent 32738) has STARTED
+Process 3 (pid 32741, parent 32738) has STARTED
+Process 4 (pid 32742, parent 32738) has STARTED
+Process 5 (pid 32743, parent 32738) has STARTED
+Process 6 (pid 32744, parent 32738) has STARTED
+Process 7 (pid 32745, parent 32738) has STARTED
+Process 8 (pid 32746, parent 32738) has STARTED
+Process 9 (pid 32747, parent 32738) has STARTED
+Process 10 (pid 32748, parent 32738) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 0 (pid 32750, parent     0) has STARTED
+Process 1 (pid 32751, parent 32750) has STARTED
+Process 2 (pid 32752, parent 32750) has STARTED
+Process 3 (pid 32753, parent 32750) has STARTED
+Process 4 (pid 32754, parent 32750) has STARTED
+Process 5 (pid 32755, parent 32750) has STARTED
+Process 6 (pid 32756, parent 32750) has STARTED
+Process 7 (pid 32757, parent 32750) has STARTED
+Process 8 (pid 32758, parent 32750) has STARTED
+Process 9 (pid 32759, parent 32750) has STARTED
+Process 10 (pid 32760, parent 32750) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 0 (pid 32762, parent     0) has STARTED
+Process 1 (pid 32763, parent 32762) has STARTED
+Process 2 (pid 32764, parent 32762) has STARTED
+Process 3 (pid 32765, parent 32762) has STARTED
+Process 4 (pid 32766, parent 32762) has STARTED
+Process 5 (pid 32767, parent 32762) has STARTED
+Process 6 (pid 32768, parent 32762) has STARTED
+Process 7 (pid 32769, parent 32762) has STARTED
+Process 8 (pid 32770, parent 32762) has STARTED
+Process 9 (pid 32771, parent 32762) has STARTED
+Process 10 (pid 32772, parent 32762) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
+Process 5 received all STARTED messages
+Process 5 received all DONE messages
+Process 2 received all STARTED messages
+Process 2 received all DONE messages
+Process 10 received all STARTED messages
+Process 10 received all DONE messages
+Process 9 received all STARTED messages
+Process 9 received all DONE messages
+Process 1 received all STARTED messages
+Process 1 received all DONE messages
+Process 8 received all STARTED messages
+Process 8 received all DONE messages
+Process 3 received all STARTED messages
+Process 3 received all DONE messages
+Process 7 received all STARTED messages
+Process 7 received all DONE messages
+Process 4 received all STARTED messages
+Process 4 received all DONE messages
+Process 6 received all STARTED messages
+Process 6 received all DONE messages
+Process 0 (pid 32775, parent     0) has STARTED
+Process 1 (pid 32776, parent 32775) has STARTED
+Process 2 (pid 32777, parent 32775) has STARTED
+Process 3 (pid 32778, parent 32775) has STARTED
+Process 4 (pid 32779, parent 32775) has STARTED
+Process 5 (pid 32780, parent 32775) has STARTED
+Process 6 (pid 32781, parent 32775) has STARTED
+Process 7 (pid 32782, parent 32775) has STARTED
+Process 8 (pid 32783, parent 32775) has STARTED
+Process 9 (pid 32784, parent 32775) has STARTED
+Process 10 (pid 32785, parent 32775) has STARTED
+Process 0 received all STARTED messages
+Process 0 has DONE its work
+Process 1 has DONE its work
+Process 2 has DONE its work
+Process 3 has DONE its work
+Process 4 has DONE its work
+Process 5 has DONE its work
+Process 6 has DONE its work
+Process 7 has DONE its work
+Process 8 has DONE its work
+Process 9 has DONE its work
+Process 10 has DONE its work
+Process 0 received all DONE messages
